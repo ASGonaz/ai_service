@@ -1,0 +1,36 @@
+
+chat_with_ai  api
+take 
+current_user_quesion:''
+current_room_summary:{latest_room_messages_summary:'..' ,last_already_summaried_message_initId:''
+latest_quesion_to_ai_by_this_user:"
+latest_ai_response_to_this_user/quesion:this included both ai responses-> the quesion response based on all prompts+data and quesion response Suggesion by ai"
+=====
+inside api
+code processing
+current_user_quesion=>pass as it is to ai , and use it to get latest topk3 messages with room filter and send it to ai also 
+latest_room_messages_summary=>pass as it is
+last_already_summaried_message_initId -> use this to search in lancedb messages(this included txt and txt of media after ocr/describe/voice to txt) that after this initid (with room filter)
+if exist -> send to ai to understand it and use it to update current summary , update  last_already_summaried_message_initId with latest send initid
+if not this mean messages summazy is fine
+NOTE:if unsummired messages exist its total length/size of total txts > (good number you give , not consume llm tokens) reduce messages you take to be under this number , example if unsummrized ids from 45->85(latest) but its total txt size/length execced (the you number) , if not take (example) 66->85 ,[i know there is will be missing in some messages , no problem], send to ai to summrize all from 45->85  [i dont know if this sol good or no you can give more best one ,i think it will be not good becuse there is some messages contain a huge txt , this that contain media txt extracted]
+latest_quesion_to_ai_by_this_user:" pass as it is (help ai)
+latest_ai_response_to_this_user/quesion:this included both ai responses pass as it is (help ai)
+
+ai processing
+take  all above data and send it as prompt (give it very good prompt based on the above info)
++system prompt+ar
+------
+api response 
+latest_room_messages_summary (with new messages summaried ) (this summary should not execced 3000 char (or sutable length)  after any summary or messages take,if exeed ai min it to be <3000(or sutable length)) by ai 
+last_already_summaried_message_initId  -> by api code and lancedb
+user_quesion  -> by api code (iknow the user already enter it but i want it in response )
+ai_response_answer_based_on_data (this ai used  data send to it to it to answer)
+ai_response_answer_message_suggession (this ai used world/global data with data send to it to suggest)
+[you can make good prompt and will defined based on avbove info and the response data i write it ]
+sure im in other backend store this info and send it in next time or whatever
+----------
+edit logic to send also this_user_ai_personlization key
+-----------------------
+you are an ai assintance in this sended room/dm that contain this members[this ids,name], and this sender[user current_user info sended] of the quesion to you , and be focused you may 
+asked by it about some one(members) in this sended room/dm ,or asked in latest message he send or someone send in room or other person in dm , and etc the prompt .....
