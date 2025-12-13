@@ -2,7 +2,9 @@
 // Central queue management for all AI services
 import Bull from "bull";
 import { QUEUE_CONFIG, SERVICE_CONFIG } from "../config/aiModels.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 // Queue instances
 let audioQueue = null;
 let imageQueue = null;
