@@ -234,10 +234,10 @@ export const QUEUE_CONFIG = {
 
   // Worker concurrency per service
   workerConcurrency: {
-    audioTranscription: 3,
-    imageDescription: 5,
-    imageOCR: 5,
-    textGeneration: 4
+    audioTranscription: 1, //3
+    imageDescription: 1, //5
+    imageOCR: 1, //5
+    textGeneration: 1 //4
   }
 };
 
