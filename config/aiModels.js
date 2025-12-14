@@ -205,7 +205,7 @@ export const SERVICE_CONFIG = {
 export const QUEUE_CONFIG = {
   redis:
   
-   process.env.MESSAGES_REDIS_URL
+   process.env.AI_REDIS_URL
   
  /* {
     host: process.env.REDIS_HOST || "localhost",
